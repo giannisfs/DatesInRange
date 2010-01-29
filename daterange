@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# 2010 Giannis Fysakis
+# E-mail: giannisfs@gmail.com
+# Released subject to the GPL 3 License
+
 
 lang=$3
 std=$1
