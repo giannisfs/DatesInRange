@@ -1,0 +1,45 @@
+#!/bin/bash
+
+
+lang=$3
+std=$1
+fnl=$2
+
+startdate=`date --date="$1" +'%Y-%m-%d'`
+
+if [ "$?" -ne 0 ]
+then
+ echo "Error with the left date formatting"
+ exit 1
+fi
+
+finaldate=`date --date="$2" +'%Y-%m-%d'` 
+
+if [ "$?" -ne 0 ]
+then 
+ echo "Error with the right date formatting"
+ exit 1
+fi
+
+
+#Substituting English to Greek or Italian with Sed
+if [ -n "$lang" -a "$lang" == "it" ]
+then 
+	SUB="s/Mon/Lunedi/ -e s/Tue/Martedì/ -e s/Wed/Mercoledì/ -e s/Thu/Giovedi/ -e s/Fri/Venerdì/ -e s/Sat/Sabato/ -e s/Sun/Domenica/"
+else
+	SUB="s/Mon/Δευτέρα/ -e s/Tue/Τρίτη/ -e s/Wed/Τετάρτη/ -e s/Thu/Πέμπτη/ -e s/Fri/Παρασκευή/ -e s/Sat/Σάββατο/ -e s/Sun/Κυριακή/"
+fi
+
+#Δευτέρα Τρίτη Τετάρτη Πέμπτη Παρασκευή  Σάββατο Κυριακή 
+# Lunedi Martedì Mercoledì Giovedi Venerdì Sabato Domenica
+
+
+
+tmpdate="$startdate"
+echo $( date --date="$tmpdate" +'%a %d-%m-%Y' ) | sed -e $SUB
+until [ "$tmpdate" == "$finaldate" ]
+do
+   tmpdate=`date --date="$tmpdate tomorrow " +'%Y-%m-%d'`
+   echo $( date --date="$tmpdate" +'%a %d-%m-%Y' ) | sed -e $SUB
+done
+

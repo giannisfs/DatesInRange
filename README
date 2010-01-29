@@ -1,0 +1,35 @@
+it generates a list of continuous dates between one date and another later currently in greek and italian 
+but it can easily changed to support any language
+it might be useful if you don't like the way excel or open office fills dates in a column... 
+it takes dates in the format Year-month-day (ex. 2010-01-01 ) also you can type 10-01-01
+and it prints dates in the format Day-Month-Year 
+
+Usage :
+	daterange <start date> <final date> <language> 
+
+Examples :
+
+./daterange 2010-01-01 2010-01-07 it
+Venerdì 01-01-2010
+Sabato 02-01-2010
+Domenica 03-01-2010
+Lunedi 04-01-2010
+Martedì 05-01-2010
+Mercoledì 06-01-2010
+Giovedi 07-01-2010
+
+./daterange 2010-01-01 2010-01-07
+Παρασκευή 01-01-2010
+Σάββατο 02-01-2010
+Κυριακή 03-01-2010
+Δευτέρα 04-01-2010
+Τρίτη 05-01-2010
+Τετάρτη 06-01-2010
+Πέμπτη 07-01-2010
+
+if we supply no argument at all  it prints the current date mentioned under the else clause in shell script code
+
+
+
+
+
